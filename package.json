@@ -1,1 +1,6 @@
-{ "name": "gatsby-source-instagram" }
+{
+  "name": "gatsby-source-instagram",
+  "version": "1.0.0",
+  "description": "Gatsby plugin to handle instagram feed.",
+  "author": "Jeremy Lynch"
+}
