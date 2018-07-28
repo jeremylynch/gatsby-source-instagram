@@ -2,5 +2,22 @@
   "name": "gatsby-source-instagram",
   "version": "1.0.0",
   "description": "Gatsby plugin to handle instagram feed.",
-  "author": "Jeremy Lynch"
+  "author": "Jeremy Lynch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeremylynch/gatsby-source-instagram.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jeremylynch/gatsby-source-instagram/issues"
+  },
+  "homepage": "https://github.com/jeremylynch/gatsby-source-instagram#readme",
+  "main": "gatsby-node.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "gatsby",
+    "instagram"
+  ],
+  "license": "ISC"
 }
