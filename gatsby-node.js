@@ -1,5 +1,6 @@
 const { createRemoteFileNode } = require(`gatsby-source-filesystem`)
 const axios = require('axios')
+const fetch = require(`./fetch`)
 
 // Replace ACCESS_TOKEN with your Instagram token
 
@@ -11,7 +12,8 @@ exports.sourceNodes = async ({ boundActionCreators, store, cache }, {accessToken
 
   let API_URI = instagram_api + accessToken + "&count=" + image_count
   // Fetch data
-  const { data } = await axios.get(API_URI)
+  console.log("Fetching Instagram Data")
+  let data = await fetch({uri: API_URI})
 
   // use for loop for async/await support
   for (const image of data.data) {
@@ -43,4 +45,6 @@ exports.sourceNodes = async ({ boundActionCreators, store, cache }, {accessToken
       console.warn('error creating node', error)
     }
   }
+  console.log("Finished Instagram")
+  return
 }
