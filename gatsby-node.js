@@ -8,7 +8,7 @@ const instagram_api = "https://api.instagram.com/v1/users/self/media/recent/?acc
 const image_count = 1
 
 exports.sourceNodes = async ({ boundActionCreators, store, cache }, {accessToken}) => {
-  const { createNode, createNodeField } = boundActionCreators
+  const { createNodeField } = boundActionCreators
 
   let API_URI = instagram_api + accessToken + "&count=" + image_count
   // Fetch data
@@ -27,22 +27,28 @@ exports.sourceNodes = async ({ boundActionCreators, store, cache }, {accessToken
         store,
         createNode,
       })
-      const fields = [
-        ['InstagramImage', 'true'],
-        ['link', image.link],
-        ['created', image.created_time],
-        ['caption', image.caption.text],
-        ['likes', image.likes.count]
-      ]
-      fields.map(async (field, i) => (
+    } catch (error) {
+      console.warn('error creating node', error)
+    }
+
+    const fields = [
+      ['InstagramImage', 'true'],
+      ['link', image.link],
+      ['created', image.created_time],
+      ['caption', image.caption.text],
+      ['likes', image.likes.count]
+    ]
+    
+    for (const field of fields) {
+      try {
         await createNodeField({
           node: fileNode,
           name: field[0],
           value: field[1],
         })
-      ))
-    } catch (error) {
-      console.warn('error creating node', error)
+      } catch (error) {
+        console.warn('error creating node', error)
+      }
     }
   }
   console.log("Finished Instagram")
