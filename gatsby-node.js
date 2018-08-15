@@ -8,7 +8,7 @@ const instagram_api = "https://api.instagram.com/v1/users/self/media/recent/?acc
 const image_count = 1
 
 exports.sourceNodes = async ({ boundActionCreators, store, cache }, {accessToken}) => {
-  const { createNodeField } = boundActionCreators
+  const { createNode, createNodeField } = boundActionCreators
 
   let API_URI = instagram_api + accessToken + "&count=" + image_count
   // Fetch data
@@ -38,7 +38,7 @@ exports.sourceNodes = async ({ boundActionCreators, store, cache }, {accessToken
       ['caption', image.caption.text],
       ['likes', image.likes.count]
     ]
-    
+
     for (const field of fields) {
       try {
         await createNodeField({
