@@ -34,7 +34,8 @@ exports.sourceNodes = async ({ boundActionCreators, store, cache }, {accessToken
       ['link', image.link],
       ['created', image.created_time],
       ['caption', image.caption.text],
-      ['likes', image.likes.count]
+      ['likes', image.likes.count],
+      ['image_url', image.images.standard_resolution.url]
     ]
 
     for (const field of fields) {
